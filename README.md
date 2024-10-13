@@ -1,2 +1,2 @@
 # Portfolio
-Personla projects
+Personal projects
