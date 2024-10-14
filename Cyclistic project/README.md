@@ -10,7 +10,7 @@ members.
 
 Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use the bikes to commute to work each day.
 
-## 3 questions to solve
+## Three questions to solve
 - How do annual members and casual riders use Cyclistic bikes differently? 
 - Why would casual riders buy Cyclistic annual memberships? 
 - How can Cyclistic use digital media to influence casual riders to become members?
@@ -100,6 +100,13 @@ rides_count_by_day <- four_months_data %>%
 ## Visualization📊
 
 1. Average Ride Length by User Type bar plot
+
+<img src="avg_ride_length.png" height = 350, width = 500>
+
+**Observation**: Casual riders have a longer average ride length compared to members.
+
+**Implication**: This suggests that casual riders may be using the service more for leisure or less frequent, but longer trips, possibly on weekends or holidays.
+
 ```
 ggplot(average_ride_length, aes(x = member_casual, y = Average_Ride_Length, fill = member_casual)) +
   geom_bar(stat = "identity") +
@@ -108,7 +115,14 @@ ggplot(average_ride_length, aes(x = member_casual, y = Average_Ride_Length, fill
 ```
 
 2. Average Ride Length by Day of the Week for Each User Type
-``` 
+
+<img src="avg_ride_length_dayweek.png" height = 350, width = 500>
+
+**Observation**: The gap between the ride lengths of members and casuals varies across the week, with casuals generally riding longer, especially on weekends.
+
+**Implication**: Members likely use bikes for regular purposes, showed by the relatively consistent ride lengths across the week. Whereas, casual users' peak on weekends supports the leisure use hypothesis.
+
+```
   #Replacing numerical day of week with actual names for clarity
   day_names <- c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
   long_data$day_of_week <- factor(day_names[long_data$day_of_week], levels = day_names)
@@ -125,6 +139,13 @@ ggplot(average_ride_length, aes(x = member_casual, y = Average_Ride_Length, fill
 ```
   
 3. Number of Rides by Day of the Week for Each User Type Bar plot
+
+<img src="number_rides_dayweek.png" height = 350, width = 500>
+
+**Observation**: Both members and casual riders show increased ride activities on weekends, with members riding more consistently throughout the week.
+
+**Implication**: The consistent high usage by members throughout the week supports the commuting use, while the peak for casuals during weekends again reveals the recreational use.
+
 ```
   ggplot(long_rides_data, aes(x = day_of_week, y = Count_of_Rides, fill = member_casual)) +
     geom_bar(stat = "identity", position = position_dodge()) +
@@ -134,3 +155,25 @@ ggplot(average_ride_length, aes(x = member_casual, y = Average_Ride_Length, fill
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Improve x-label readability
 ```
+
+## Conclusion
+
+**1. How do annual members and casual riders use Cyclistic bikes differently?**
+
+*Data Insight*: From the graphs, members use bikes more consistently throughout the week, which would be for daily routines, while casual riders use peaks on weekends, indicating more of a leisure activity.
+
+*Strategy*: Marketing strategies could emphasize reliability and cost-effectiveness for members, and flexibility and fun for casual riders.
+
+
+**2. Why would casual riders buy Cyclistic annual memberships?**
+
+*Data Insight*: If casual riders are shown how they might save money or gain additional benefits (like reduced waiting times or access to premium bikes) through membership when they ride frequently on weekends, the value proposition increases.
+
+*Strategy*: Create promotional campaigns that calculate potential savings for casual riders if they switch to annual or weekend memberships, which is their peak usage time.
+
+
+**3. How can Cyclistic use digital media to influence casual riders to become members?**
+
+*Targeted Advertising*: Use data insights from the usage patterns to craft targeted ads that reach casual riders on digital platforms during times just before typical peak usage (like Friday afternoons before weekends).
+
+*Content Marketing*: Develop content that showcases the benefits of cycling and membership through success stories, user testimonials, and highlighted member-exclusive benefits, distributed via social media, blogs, and online forums where potential users might visit before deciding on their weekend plans.
